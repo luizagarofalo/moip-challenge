@@ -54,14 +54,46 @@
 		6AFAAF4E211936C9004DEA8D /* moip-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				6AFAAF61211939FF004DEA8D /* Entities */,
+				6AFAAF6221193A06004DEA8D /* Gateways */,
+				6AFAAF6421193A16004DEA8D /* Storyboards */,
+				6AFAAF6321193A0D004DEA8D /* ViewControllers */,
 				6AFAAF4F211936C9004DEA8D /* AppDelegate.swift */,
-				6AFAAF51211936C9004DEA8D /* ViewController.swift */,
-				6AFAAF53211936C9004DEA8D /* Main.storyboard */,
 				6AFAAF56211936C9004DEA8D /* Assets.xcassets */,
-				6AFAAF58211936C9004DEA8D /* LaunchScreen.storyboard */,
 				6AFAAF5B211936C9004DEA8D /* Info.plist */,
 			);
 			path = "moip-challenge";
+			sourceTree = "<group>";
+		};
+		6AFAAF61211939FF004DEA8D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		6AFAAF6221193A06004DEA8D /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Gateways;
+			sourceTree = "<group>";
+		};
+		6AFAAF6321193A0D004DEA8D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6AFAAF51211936C9004DEA8D /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6AFAAF6421193A16004DEA8D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				6AFAAF58211936C9004DEA8D /* LaunchScreen.storyboard */,
+				6AFAAF53211936C9004DEA8D /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
