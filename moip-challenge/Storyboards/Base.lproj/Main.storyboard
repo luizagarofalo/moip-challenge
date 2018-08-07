@@ -13,7 +13,7 @@
         <!--Login-->
         <scene sceneID="3bX-fe-qJ1">
             <objects>
-                <viewController title="Login" id="QyY-KE-ubM" sceneMemberID="viewController">
+                <viewController title="Login" id="QyY-KE-ubM" customClass="LoginViewController" customModule="moip_challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DYG-Zp-NTS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,6 +46,9 @@
                                         <state key="normal" title="ACESSAR MINHA CONTA">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="U7v-Vr-0EL" kind="show" id="sLo-RK-m9F"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -83,18 +86,35 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="132.68365817091455"/>
         </scene>
-        <!--Pedidos-->
+        <!--Orders-->
         <scene sceneID="TXu-8f-BjY">
             <objects>
-                <viewController title="Pedidos" id="U7v-Vr-0EL" sceneMemberID="viewController">
+                <viewController id="U7v-Vr-0EL" userLabel="Orders" customClass="OrdersViewController" customModule="moip_challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RN2-JM-7ul">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NdT-yA-kD0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="U7v-Vr-0EL" id="Egv-nJ-pj4"/>
+                                    <outlet property="delegate" destination="U7v-Vr-0EL" id="rNl-Cg-CsJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NdT-yA-kD0" firstAttribute="leading" secondItem="V2p-Af-v11" secondAttribute="leading" id="GE3-BG-YwG"/>
+                            <constraint firstAttribute="bottom" secondItem="NdT-yA-kD0" secondAttribute="bottom" id="cSl-tF-kIX"/>
+                            <constraint firstItem="NdT-yA-kD0" firstAttribute="top" secondItem="V2p-Af-v11" secondAttribute="top" id="ioY-yt-VeT"/>
+                            <constraint firstItem="V2p-Af-v11" firstAttribute="trailing" secondItem="NdT-yA-kD0" secondAttribute="trailing" id="nws-js-Dwr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="V2p-Af-v11"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="ordersTableView" destination="NdT-yA-kD0" id="Tgf-wy-Jmf"/>
                         <segue destination="9OF-at-LHv" kind="show" identifier="showOrderDetailsSegue" id="slN-iF-Qye"/>
                     </connections>
                 </viewController>
@@ -102,10 +122,10 @@
             </objects>
             <point key="canvasLocation" x="2354" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Order Details-->
         <scene sceneID="Bco-Se-MwR">
             <objects>
-                <viewController id="9OF-at-LHv" sceneMemberID="viewController">
+                <viewController id="9OF-at-LHv" userLabel="Order Details" customClass="OrderDetailsViewController" customModule="moip_challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Fd-bW-ugp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,4 +160,7 @@
         <image name="background" width="1012" height="614"/>
         <image name="logo" width="314" height="170"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="o0I-VX-bfZ"/>
+    </inferredMetricsTieBreakers>
 </document>
