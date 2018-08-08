@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A22E60B211A8A0500F16965 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E60A211A8A0500F16965 /* LoginRequest.swift */; };
+		6A22E60D211A8A1C00F16965 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E60C211A8A1C00F16965 /* LoginResponse.swift */; };
+		6A22E60F211A8A2B00F16965 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E60E211A8A2B00F16965 /* Method.swift */; };
+		6A22E611211A8A3A00F16965 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E610211A8A3A00F16965 /* Orders.swift */; };
+		6A22E613211A8A5900F16965 /* RequestsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E612211A8A5900F16965 /* RequestsGateway.swift */; };
 		6AFAAF50211936C9004DEA8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAAF4F211936C9004DEA8D /* AppDelegate.swift */; };
 		6AFAAF55211936C9004DEA8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAAF53211936C9004DEA8D /* Main.storyboard */; };
 		6AFAAF57211936C9004DEA8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AFAAF56211936C9004DEA8D /* Assets.xcassets */; };
@@ -19,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A22E60A211A8A0500F16965 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		6A22E60C211A8A1C00F16965 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		6A22E60E211A8A2B00F16965 /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		6A22E610211A8A3A00F16965 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		6A22E612211A8A5900F16965 /* RequestsGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsGateway.swift; sourceTree = "<group>"; };
 		6AFAAF4C211936C9004DEA8D /* moip-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moip-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFAAF4F211936C9004DEA8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AFAAF54211936C9004DEA8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,6 +86,10 @@
 		6AFAAF61211939FF004DEA8D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				6A22E60A211A8A0500F16965 /* LoginRequest.swift */,
+				6A22E60C211A8A1C00F16965 /* LoginResponse.swift */,
+				6A22E60E211A8A2B00F16965 /* Method.swift */,
+				6A22E610211A8A3A00F16965 /* Orders.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -83,6 +97,7 @@
 		6AFAAF6221193A06004DEA8D /* Gateways */ = {
 			isa = PBXGroup;
 			children = (
+				6A22E612211A8A5900F16965 /* RequestsGateway.swift */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -181,11 +196,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A22E60F211A8A2B00F16965 /* Method.swift in Sources */,
 				6AFAAF6B211946C5004DEA8D /* OrderDetailsViewController.swift in Sources */,
 				6AFAAF6E211947E9004DEA8D /* OrderTableViewCell.swift in Sources */,
 				6AFAAF6721194680004DEA8D /* LoginViewController.swift in Sources */,
+				6A22E60B211A8A0500F16965 /* LoginRequest.swift in Sources */,
 				6AFAAF69211946A7004DEA8D /* OrdersViewController.swift in Sources */,
+				6A22E613211A8A5900F16965 /* RequestsGateway.swift in Sources */,
+				6A22E611211A8A3A00F16965 /* Orders.swift in Sources */,
 				6AFAAF50211936C9004DEA8D /* AppDelegate.swift in Sources */,
+				6A22E60D211A8A1C00F16965 /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

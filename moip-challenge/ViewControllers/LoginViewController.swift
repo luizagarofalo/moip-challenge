@@ -15,4 +15,10 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
+    
+    @IBAction func login(_ sender: UIButton) {
+        RequestGateway.makeRequest(.POST) { (response) in
+            print(response.accessToken ?? "Não temos o token.")
+        }
+    }
 }
