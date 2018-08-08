@@ -17,8 +17,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        RequestGateway.makeRequest(.POST) { (response) in
-            print(response.accessToken ?? "Não temos o token.")
+        NetworkRequest.makeRequest(.POST) { (response) in
+            print(">> Access token:", response.accessToken ?? "Não temos o token.")
         }
     }
 }
