@@ -21,6 +21,13 @@ struct Order: Codable {
     let payments: [Payment]?
     let events: [Event]?
     let createdAt, updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case ownID = "ownId"
+        case status, amount, receivers, customer, payments, events
+        case createdAt, updatedAt
+    }
 }
 
 struct Amount: Codable {

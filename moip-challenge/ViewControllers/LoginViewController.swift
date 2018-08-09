@@ -6,6 +6,7 @@
 //  Copyright © 2018 Luiza Garofalo. All rights reserved.
 //
 
+import SwiftKeychainWrapper
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -17,8 +18,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        NetworkRequest.makeRequest(.POST) { (response) in
-            print(">> Access token:", response.accessToken ?? "Não temos o token.")
+        NetworkRequest.makeRequest(.POST) { (response: Result<Login>) in
+            switch response {
+            case .positive(let login):
+                if let accessToken = login.accessToken {
+                    KeychainWrapper.standard.set(accessToken, forKey: "access_token")
+                }
+            case .negative(let error):
+                print(error)
+            }
         }
     }
 }
