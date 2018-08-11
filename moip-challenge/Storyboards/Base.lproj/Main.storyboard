@@ -77,7 +77,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qsd-WS-oME"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zBz-dW-idv"/>
+                    <navigationItem key="navigationItem" id="zBz-dW-idv">
+                        <barButtonItem key="backBarButtonItem" title="Logout" id="bDu-Bo-T4Z"/>
+                    </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="password" destination="um2-DC-vHa" id="AYM-3X-AgA"/>

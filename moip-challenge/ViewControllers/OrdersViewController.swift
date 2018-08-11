@@ -21,6 +21,13 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            KeychainWrapper.standard.removeObject(forKey: "access_token")
+        }
+    }
+
     private func loadData() {
         NetworkRequest.makeRequest(.GET(token!, nil), onComplete: updateOrders)
     }
