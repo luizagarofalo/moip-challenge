@@ -7,5 +7,6 @@ target 'moip-challenge' do
 
   # Pods for moip-challenge
   pod 'SwiftKeychainWrapper'
+  pod 'SwiftLint'
 
 end

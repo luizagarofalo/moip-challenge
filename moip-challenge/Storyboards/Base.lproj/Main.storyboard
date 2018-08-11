@@ -48,7 +48,7 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="QyY-KE-ubM" eventType="touchUpInside" id="xJp-yT-5tc"/>
-                                            <segue destination="U7v-Vr-0EL" kind="show" id="sLo-RK-m9F"/>
+                                            <segue destination="U7v-Vr-0EL" kind="show" identifier="showOrdersSegue" id="sLo-RK-m9F"/>
                                         </connections>
                                     </button>
                                 </subviews>

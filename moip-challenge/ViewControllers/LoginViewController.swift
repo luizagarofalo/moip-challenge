@@ -7,8 +7,11 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ varmated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        if KeychainWrapper.standard.string(forKey: "access_token") != nil {
+            performSegue(withIdentifier: "showOrdersSegue", sender: nil)
+        }
     }
-    
+
     @IBAction func login(_ sender: UIButton) {
         NetworkRequest.makeRequest(.POST(self.username.text!, self.password.text!)) { (response: Result<Login>) in
             switch response {
