@@ -12,6 +12,10 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
+    private var isLoadingNext = false
+    private var limit = 10
+    private var offset = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
@@ -29,7 +33,7 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     private func loadData() {
-        NetworkRequest.makeRequest(.GET(token!, nil), onComplete: updateOrders)
+        NetworkRequest.makeRequest(.GET(.orders(token!, limit, offset)), onComplete: updateOrders)
     }
 
     private func updateOrders(response: Result<Orders>) {
@@ -97,6 +101,21 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         if let orderDetailsViewController = segue.destination as? OrderDetailsViewController {
             if let order = sender as? Order {
                 orderDetailsViewController.order = order.id
+            }
+        }
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isLoadingNext = false
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (ordersTableView.contentOffset.y + ordersTableView.frame.size.height)
+            >= ordersTableView.contentSize.height {
+            if !isLoadingNext {
+                isLoadingNext = true
+                self.offset += self.limit
+                loadData()
             }
         }
     }

@@ -16,10 +16,10 @@ class OrderDetailsViewController: UIViewController {
     @IBOutlet weak var liquidValue: UILabel!
     @IBOutlet weak var numberOfPayments: UILabel!
 
-    lazy var token = KeychainWrapper.standard.string(forKey: "access_token")
     var order = ""
-    let firstFormatter = DateFormatter()
-    let secondFormatter = DateFormatter()
+    lazy var token = KeychainWrapper.standard.string(forKey: "access_token")
+    private let firstFormatter = DateFormatter()
+    private let secondFormatter = DateFormatter()
 
     override func viewWillAppear(_ animated: Bool) {
         firstFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -28,7 +28,7 @@ class OrderDetailsViewController: UIViewController {
     }
 
     private func loadData() {
-        NetworkRequest.makeRequest(.GET(token!, self.order), onComplete: updateOrders)
+        NetworkRequest.makeRequest(.GET(.order(token!, self.order)), onComplete: updateOrders)
     }
 
     private func updateOrders(response: Result<Order>) {
