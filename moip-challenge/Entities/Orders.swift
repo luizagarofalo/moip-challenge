@@ -6,13 +6,14 @@ struct Orders: Codable {
 }
 
 struct Order: Codable {
-    let id, ownID, status: String?
+    let id: String
+    let ownID, status: String?
     let amount: Amount
     let receivers: [Receiver]?
     let customer: Customer?
     let payments: [Payment]?
     let events: [Event]?
-    let createdAt, updatedAt: String?
+    let createdAt, updatedAt: String
 
     enum CodingKeys: String, CodingKey {
         case id

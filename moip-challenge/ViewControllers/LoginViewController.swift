@@ -5,9 +5,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     override func viewWillAppear(_ varmated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }

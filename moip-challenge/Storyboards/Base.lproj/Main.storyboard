@@ -455,6 +455,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gCO-zL-XXl"/>
                     </view>
+                    <connections>
+                        <outlet property="buyerEmail" destination="rlT-AT-IuF" id="F9Y-UQ-rM6"/>
+                        <outlet property="buyerName" destination="s1j-hV-fVF" id="fzS-UD-vWt"/>
+                        <outlet property="creationDate" destination="g63-s6-HpH" id="xyH-TK-xyT"/>
+                        <outlet property="currentStatus" destination="yMe-HH-Y3F" id="4Vv-AR-Srt"/>
+                        <outlet property="currentStatusDate" destination="2bN-tp-2eP" id="Yk4-SH-sys"/>
+                        <outlet property="id" destination="1xt-aO-vaY" id="kQv-6p-aXM"/>
+                        <outlet property="liquidValue" destination="vcJ-Je-e66" id="ovF-uY-Xkd"/>
+                        <outlet property="numberOfPayments" destination="hf4-5e-wlA" id="w3t-ia-Wxg"/>
+                        <outlet property="operationType" destination="oBB-Fr-bhd" id="1LU-Vx-UAg"/>
+                        <outlet property="ownID" destination="tPG-9e-5JZ" id="t5r-v0-HXW"/>
+                        <outlet property="tax" destination="lnL-Wg-76z" id="hcM-eN-kwv"/>
+                        <outlet property="totalAmount" destination="PMZ-zd-p74" id="1JU-Lf-fdM"/>
+                        <outlet property="value" destination="rIx-Y9-8Lt" id="4bv-z1-TTE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTt-fV-eyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

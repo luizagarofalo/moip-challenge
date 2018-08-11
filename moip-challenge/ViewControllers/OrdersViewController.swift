@@ -34,7 +34,6 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
             
         case .negative(let error):
             print(">> Error:", error.localizedDescription)
-            
         }
     }
     
@@ -53,7 +52,7 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         firstFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         secondFormatter.dateFormat = "dd/MM/yyyy"
         
-        if let date = firstFormatter.date(from: self.orders[indexPath.row].createdAt!) {
+        if let date = firstFormatter.date(from: self.orders[indexPath.row].createdAt) {
             let formattedDate = secondFormatter.string(from: date)
             cell.date.text = formattedDate
         }
@@ -83,11 +82,16 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showOrderDetailsSegue", sender: indexPath.row)
+        let order = self.orders[indexPath.row]
+        self.performSegue(withIdentifier: "showOrderDetailsSegue", sender: order)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let orderDetailsViewController = segue.destination as? OrderDetailsViewController {
+            if let order = sender as? Order {
+                orderDetailsViewController.order = order.id
+            }
+        }
     }
 }
 
