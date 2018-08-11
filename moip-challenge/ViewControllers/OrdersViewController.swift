@@ -1,15 +1,8 @@
-//
-//  OrdersViewController.swift
-//  moip-challenge
-//
-//  Created by Luiza Collado Garofalo on 07/08/18.
-//  Copyright © 2018 Luiza Garofalo. All rights reserved.
-//
-
 import SwiftKeychainWrapper
 import UIKit
 
 class OrdersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    lazy var token = KeychainWrapper.standard.string(forKey: "access_token")
     @IBOutlet weak var ordersTableView: UITableView!
     private var orders: [Order] = [] {
         didSet {
@@ -23,26 +16,25 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         ordersTableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        self.loadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.loadData()
+        }
     }
 
     private func loadData() {
-        NetworkRequest.makeRequest(.GET) { (response: Result<Orders>) in
-            switch response {
-            case .positive(let orders):
-                DispatchQueue.main.async {
-                    if orders.orders != nil {
-                        self.orders += orders.orders!
-                        self.ordersTableView.reloadData()
-                        print(orders)
-                    } else {
-                        print("No orders found for this account.")
-                    }
-                }
+        NetworkRequest.makeRequest(.GET(token!), onComplete: updateOrders)
+    }
 
-            case .negative(let error):
-                print(">> Error:", error.localizedDescription)
+    private func updateOrders(response: Result<Orders>) {
+        switch response {
+        case .positive(let orders):
+            DispatchQueue.main.async {
+                self.orders += orders.orders!
             }
+
+        case .negative(let error):
+            print(">> Error:", error.localizedDescription)
+
         }
     }
     
@@ -55,6 +47,12 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
                                                        for: indexPath) as? OrderTableViewCell else {
                                                         return UITableViewCell()
         }
+
+        cell.date.text = self.orders[indexPath.row].createdAt
+        cell.email.text = self.orders[indexPath.row].customer?.email
+        cell.status.text = self.orders[indexPath.row].status
+        cell.token.text = self.orders[indexPath.row].id
+        cell.value.text = String(describing: self.orders[indexPath.row].amount?.total)
 
         return cell
     }

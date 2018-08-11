@@ -81,6 +81,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="date" destination="9KD-9J-JUZ" id="iLy-uU-e0z"/>
+                <outlet property="email" destination="GSU-id-P5y" id="5h8-al-jEH"/>
+                <outlet property="status" destination="GDz-tK-5aj" id="ece-ZV-y1i"/>
+                <outlet property="token" destination="En1-ne-GMU" id="6eP-uw-FVT"/>
+                <outlet property="value" destination="jw1-OB-k1Z" id="hiu-Q0-Raj"/>
+            </connections>
             <point key="canvasLocation" x="34" y="53.5"/>
         </tableViewCell>
     </objects>

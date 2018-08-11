@@ -80,6 +80,8 @@
                     <navigationItem key="navigationItem" id="zBz-dW-idv"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="password" destination="um2-DC-vHa" id="AYM-3X-AgA"/>
+                        <outlet property="username" destination="ahG-nz-4Q5" id="FGE-qJ-yO1"/>
                         <segue destination="U7v-Vr-0EL" kind="show" identifier="showOrdersSegue" id="o0I-VX-bfZ"/>
                     </connections>
                 </viewController>
@@ -90,7 +92,7 @@
         <!--Orders-->
         <scene sceneID="TXu-8f-BjY">
             <objects>
-                <viewController id="U7v-Vr-0EL" userLabel="Orders" customClass="OrdersViewController" customModule="moip_challenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrdersViewController" id="U7v-Vr-0EL" userLabel="Orders" customClass="OrdersViewController" customModule="moip_challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RN2-JM-7ul">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
