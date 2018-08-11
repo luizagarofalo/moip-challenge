@@ -82,7 +82,6 @@
                     <connections>
                         <outlet property="password" destination="um2-DC-vHa" id="AYM-3X-AgA"/>
                         <outlet property="username" destination="ahG-nz-4Q5" id="FGE-qJ-yO1"/>
-                        <segue destination="U7v-Vr-0EL" kind="show" identifier="showOrdersSegue" id="o0I-VX-bfZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZT7-5k-vpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -488,7 +487,4 @@
         <image name="logo" width="314" height="170"/>
         <image name="payments" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="o0I-VX-bfZ"/>
-    </inferredMetricsTieBreakers>
 </document>

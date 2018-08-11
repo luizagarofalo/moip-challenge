@@ -7,7 +7,7 @@ struct Orders: Codable {
 
 struct Order: Codable {
     let id, ownID, status: String?
-    let amount: Amount?
+    let amount: Amount
     let receivers: [Receiver]?
     let customer: Customer?
     let payments: [Payment]?
@@ -23,7 +23,8 @@ struct Order: Codable {
 }
 
 struct Amount: Codable {
-    let paid, total, addition, fees, deduction: Int?
+    let total: Int
+    let paid, addition, fees, deduction: Int?
     let refunds, liquid, otherReceivers: Int?
     let currency: String?
 }

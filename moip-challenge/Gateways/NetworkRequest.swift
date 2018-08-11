@@ -8,8 +8,13 @@ class NetworkRequest {
         var request: URLRequest
 
         switch method {
-        case .GET(let token):
-            let path = "https://sandbox.moip.com.br/v2/orders"
+        case .GET(let token, let order):
+            var path = "https://sandbox.moip.com.br/v2/orders"
+            
+            if order != nil {
+                path = path + "/\(String(describing: order))"
+            }
+            
             request = URLRequest(url: URL(string: path)!)
             request.httpMethod = "GET"
             request.setValue("OAuth \(token)", forHTTPHeaderField: "Authorization")
@@ -23,7 +28,7 @@ class NetworkRequest {
                 "client_secret=05acb6e128bc48b2999582cd9a2b9787&" +
                 "grant_type=password&" +
                 "username=\(username)&" +
-                "password=\(password))&" +
+                "password=\(password)&" +
                 "device_id=111111&" +
             "scope=APP_ADMIN"
 
