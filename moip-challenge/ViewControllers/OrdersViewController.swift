@@ -1,7 +1,7 @@
 import SwiftKeychainWrapper
 import UIKit
 
-class OrdersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class OrdersViewController: UIViewController {
     lazy var token = KeychainWrapper.standard.string(forKey: "access_token")
     @IBOutlet weak var ordersTableView: UITableView!
     private var orders: [Order] = [] {
@@ -21,7 +21,16 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationController?.isNavigationBarHidden = false
         ordersTableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.loadData()
+            if self.token != nil {
+                self.loadData()
+            } else {
+                DispatchQueue.main.async {
+                    _ = self.navigationController?.popToRootViewController(animated: false)
+                    ErrorMessage.show(title: "Oops!",
+                                      message: "Something went wrong. Please, try again.",
+                                      controller: self)
+                }
+            }
         }
     }
 
@@ -48,6 +57,23 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isLoadingNext = false
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (ordersTableView.contentOffset.y + ordersTableView.frame.size.height)
+            >= ordersTableView.contentSize.height {
+            if !isLoadingNext {
+                isLoadingNext = true
+                self.offset += self.limit
+                loadData()
+            }
+        }
+    }
+}
+
+extension OrdersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.orders.count
     }
@@ -87,7 +113,9 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
 
         return cell
     }
+}
 
+extension OrdersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
@@ -101,21 +129,6 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         if let orderDetailsViewController = segue.destination as? OrderDetailsViewController {
             if let order = sender as? Order {
                 orderDetailsViewController.order = order.id
-            }
-        }
-    }
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        isLoadingNext = false
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if (ordersTableView.contentOffset.y + ordersTableView.frame.size.height)
-            >= ordersTableView.contentSize.height {
-            if !isLoadingNext {
-                isLoadingNext = true
-                self.offset += self.limit
-                loadData()
             }
         }
     }
