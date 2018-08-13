@@ -1,7 +1,6 @@
 import Foundation
-import SwiftKeychainWrapper
 
-class NetworkRequest {
+class NetworkRequest: Request {
     private static let session = URLSession(configuration: .default)
 
     static func makeRequest<T: Codable>(_ method: Method, onComplete: @escaping (Result<T>) -> Void) {

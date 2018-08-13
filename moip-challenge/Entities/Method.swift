@@ -1,11 +1,11 @@
 import Foundation
 
 enum Method {
-    case GET(Request)
+    case GET(Path)
     case POST(String, String)
 }
 
-enum Request {
+enum Path {
     case orders(String, Int, Int)
     case order(String, String)
 }
