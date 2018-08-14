@@ -24,8 +24,8 @@ class LoginViewController: UIViewController {
 
         let onComplete: (Result<Login>) -> Void = { response in
             switch response {
-            case .positive(let login): onSuccess(login)
-            case .negative(let error): print(error)
+            case .success(let login): onSuccess(login)
+            case .failure(let error): print(error)
             }
         }
 

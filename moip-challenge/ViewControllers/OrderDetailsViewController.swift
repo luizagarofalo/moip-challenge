@@ -32,12 +32,12 @@ class OrderDetailsViewController: UIViewController {
 
     private func updateOrder(response: Result<Order>) {
         switch response {
-        case .positive(let order):
+        case .success(let order):
             DispatchQueue.main.async {
                 self.updateValues(from: order)
             }
 
-        case .negative(let error):
+        case .failure(let error):
             print(error.localizedDescription)
             showError(title: "Oops!", message: "Something went wrong. Please, try again.")
         }

@@ -40,7 +40,7 @@ class OrdersViewController: UIViewController {
 
     private func updateOrders(response: Result<Orders>) {
         switch response {
-        case .positive(let orders):
+        case .success(let orders):
             DispatchQueue.main.async {
                 if orders.orders != nil {
                     self.orders += orders.orders!
@@ -49,7 +49,7 @@ class OrdersViewController: UIViewController {
                 }
             }
 
-        case .negative(let error):
+        case .failure(let error):
             print(error.localizedDescription)
             self.handleError()
         }
@@ -143,7 +143,7 @@ extension OrdersViewController: UITableViewDelegate {
 extension Int {
     var currency: String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
+        formatter.numberStyle = .decimal
         formatter.groupingSize = 2
         formatter.secondaryGroupingSize = 3
         return formatter.string(from: self as NSNumber)!
