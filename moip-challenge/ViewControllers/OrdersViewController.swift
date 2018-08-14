@@ -20,12 +20,10 @@ class OrdersViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         ordersTableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            if self.token != nil {
-                self.loadData()
-            } else {
-                self.handleError()
-            }
+        if self.token != nil {
+            self.loadData()
+        } else {
+            self.handleError()
         }
     }
 
@@ -52,7 +50,7 @@ class OrdersViewController: UIViewController {
             }
 
         case .negative(let error):
-            print(">> Error:", error.localizedDescription)
+            print(error.localizedDescription)
             self.handleError()
         }
     }
@@ -60,9 +58,7 @@ class OrdersViewController: UIViewController {
     private func handleError() {
         DispatchQueue.main.async {
             _ = self.navigationController?.popToRootViewController(animated: false)
-            ErrorMessage.show(title: "Oops!",
-                              message: "Something went wrong. Please, try again.",
-                              controller: self)
+            self.showError(title: "Oops!", message: "Something went wrong. Please, try again.")
         }
     }
 
@@ -147,7 +143,7 @@ extension OrdersViewController: UITableViewDelegate {
 extension Int {
     var currency: String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
+        formatter.numberStyle = .currency
         formatter.groupingSize = 2
         formatter.secondaryGroupingSize = 3
         return formatter.string(from: self as NSNumber)!

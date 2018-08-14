@@ -8,20 +8,27 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ varmated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         if KeychainWrapper.standard.string(forKey: "access_token") != nil {
-            performSegue(withIdentifier: "showOrdersSegue", sender: nil)
+            self.performSegue(withIdentifier: "showOrdersSegue", sender: nil)
         }
     }
 
     @IBAction func login(_ sender: UIButton) {
-        NetworkRequest.makeRequest(.POST(self.username.text!, self.password.text!)) { (response: Result<Login>) in
-            switch response {
-            case .positive(let login):
-                if let token = login.accessToken {
-                    KeychainWrapper.standard.set(token, forKey: "access_token")
+        let onSuccess: (Login) -> Void = { login in
+            if let token = login.accessToken {
+                KeychainWrapper.standard.set(token, forKey: "access_token")
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "showOrdersSegue", sender: nil)
                 }
-            case .negative(let error):
-                print(error)
             }
         }
+
+        let onComplete: (Result<Login>) -> Void = { response in
+            switch response {
+            case .positive(let login): onSuccess(login)
+            case .negative(let error): print(error)
+            }
+        }
+
+        NetworkRequest.makeRequest(.POST(self.username.text!, self.password.text!), onComplete: onComplete)
     }
 }

@@ -48,7 +48,6 @@
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="QyY-KE-ubM" eventType="touchUpInside" id="xJp-yT-5tc"/>
-                                            <segue destination="U7v-Vr-0EL" kind="show" identifier="showOrdersSegue" id="sLo-RK-m9F"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -84,6 +83,7 @@
                     <connections>
                         <outlet property="password" destination="um2-DC-vHa" id="AYM-3X-AgA"/>
                         <outlet property="username" destination="ahG-nz-4Q5" id="FGE-qJ-yO1"/>
+                        <segue destination="U7v-Vr-0EL" kind="show" identifier="showOrdersSegue" id="Y2d-f5-rFb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZT7-5k-vpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
