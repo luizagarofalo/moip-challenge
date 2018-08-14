@@ -9,14 +9,12 @@ class NetworkRequest: Request {
         switch method {
         case .GET(.orders(let token, let limit, let offset)):
             let path = "https://sandbox.moip.com.br/v2/orders?limit=\(limit)&offset=\(offset)"
-
             request = URLRequest(url: URL(string: path)!)
             request.httpMethod = "GET"
             request.setValue("OAuth \(token)", forHTTPHeaderField: "Authorization")
 
         case .GET(.order(let token, let order)):
             let path = "https://sandbox.moip.com.br/v2/orders/\(order)"
-
             request = URLRequest(url: URL(string: path)!)
             request.httpMethod = "GET"
             request.setValue("OAuth \(token)", forHTTPHeaderField: "Authorization")

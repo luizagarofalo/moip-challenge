@@ -24,12 +24,7 @@ class OrdersViewController: UIViewController {
             if self.token != nil {
                 self.loadData()
             } else {
-                DispatchQueue.main.async {
-                    _ = self.navigationController?.popToRootViewController(animated: false)
-                    ErrorMessage.show(title: "Oops!",
-                                      message: "Something went wrong. Please, try again.",
-                                      controller: self)
-                }
+                self.handleError()
             }
         }
     }
@@ -49,11 +44,25 @@ class OrdersViewController: UIViewController {
         switch response {
         case .positive(let orders):
             DispatchQueue.main.async {
-                self.orders += orders.orders!
+                if orders.orders != nil {
+                    self.orders += orders.orders!
+                } else {
+                    self.handleError()
+                }
             }
 
         case .negative(let error):
             print(">> Error:", error.localizedDescription)
+            self.handleError()
+        }
+    }
+
+    private func handleError() {
+        DispatchQueue.main.async {
+            _ = self.navigationController?.popToRootViewController(animated: false)
+            ErrorMessage.show(title: "Oops!",
+                              message: "Something went wrong. Please, try again.",
+                              controller: self)
         }
     }
 
@@ -95,14 +104,15 @@ extension OrdersViewController: UITableViewDataSource {
         }
 
         if let status = self.orders[indexPath.row].status {
-            cell.status.text = status
-
             switch status {
             case "PAID":
+                cell.status.text = "Pago"
                 cell.status.textColor = UIColor(red: 0.4157, green: 0.6902, blue: 0.298, alpha: 1.0)
             case "WAITING":
+                cell.status.text = "Aguardando"
                 cell.status.textColor = UIColor(red: 0.9765, green: 0.7922, blue: 0.1412, alpha: 1.0)
             default:
+                cell.status.text = "Não Pago"
                 cell.status.textColor = UIColor(red: 0.9216, green: 0.302, blue: 0.2941, alpha: 1.0)
             }
         }

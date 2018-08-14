@@ -9,7 +9,6 @@ struct Order: Codable {
     let id: String
     let ownID, status: String?
     let amount: Amount
-    let receivers: [Receiver]?
     let customer: Customer?
     let payments: [Payment]?
     let events: [Event]?
@@ -18,20 +17,19 @@ struct Order: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case ownID = "ownId"
-        case status, amount, receivers, customer, payments, events
+        case status, amount, customer, payments, events
         case createdAt, updatedAt
     }
 }
 
 struct Amount: Codable {
     let total: Int
-    let paid, addition, fees, deduction: Int?
-    let refunds, liquid, otherReceivers: Int?
+    let fees, liquid: Int?
     let currency: String?
 }
 
 struct Customer: Codable {
-    let id, ownId, fullname, email: String?
+    let fullname, email: String?
 }
 
 struct Event: Codable {
@@ -40,17 +38,11 @@ struct Event: Codable {
 
 struct Payment: Codable {
     let id: String?
-    let installmentCount: Int?
     let fundingInstrument: FundingInstrument?
 }
 
 struct FundingInstrument: Codable {
     let method, brand: String?
-}
-
-struct Receiver: Codable {
-    let type: String?
-    let moipAccount: MoipAccount?
 }
 
 struct MoipAccount: Codable {
