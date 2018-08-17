@@ -7,13 +7,18 @@ class NetworkRequest: Gateway {
             if let error = error {
                 return onComplete(.failure(error))
             }
+
             guard let data = data else { return }
 
             do {
                 let response = try JSONDecoder().decode(T.self, from: data)
-                onComplete(.success(response))
+                DispatchQueue.main.async {
+                    onComplete(.success(response))
+                }
             } catch {
-                onComplete(.failure(error))
+                DispatchQueue.main.async {
+                    onComplete(.failure(error))
+                }
             }
             }.resume()
     }

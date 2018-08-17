@@ -5,7 +5,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
 
-    override func viewWillAppear(_ varmated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         if KeychainWrapper.standard.string(forKey: "access_token") != nil {
             self.performSegue(withIdentifier: "showOrdersSegue", sender: nil)
@@ -16,9 +17,7 @@ class LoginViewController: UIViewController {
         let onSuccess: (Login) -> Void = { login in
             if let token = login.accessToken {
                 KeychainWrapper.standard.set(token, forKey: "access_token")
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "showOrdersSegue", sender: nil)
-                }
+                self.performSegue(withIdentifier: "showOrdersSegue", sender: nil)
             }
         }
 

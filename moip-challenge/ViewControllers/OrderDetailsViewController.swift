@@ -22,6 +22,7 @@ class OrderDetailsViewController: UIViewController {
     private let secondFormatter = DateFormatter()
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.topItem?.title = "Voltar"
         loadData()
     }
@@ -33,9 +34,7 @@ class OrderDetailsViewController: UIViewController {
     private func updateOrder(response: Result<Order>) {
         switch response {
         case .success(let order):
-            DispatchQueue.main.async {
-                self.updateValues(from: order)
-            }
+            self.updateValues(from: order)
 
         case .failure(let error):
             print(error.localizedDescription)
@@ -56,6 +55,8 @@ class OrderDetailsViewController: UIViewController {
         self.totalAmount.text = "+ R$ " + order.amount.total.currency
         self.tax.text = "- R$ " + (order.amount.fees?.currency ?? "0")
         self.liquidValue.text = "R$ " + (order.amount.liquid?.currency ?? order.amount.total.currency)
+        self.currentStatus.textColor = order.statusColor
+        self.currentStatus.text = order.statusText
 
         if let operationType = order.payments?[0].fundingInstrument?.method {
             switch operationType {
@@ -66,9 +67,6 @@ class OrderDetailsViewController: UIViewController {
             }
         }
 
-        self.currentStatus.textColor = order.statusColor
-        self.currentStatus.text = order.statusText
-
         if let date = self.firstFormatter.date(from: order.createdAt) {
             let formattedDate = self.secondFormatter.string(from: date)
             print(formattedDate)
@@ -77,34 +75,6 @@ class OrderDetailsViewController: UIViewController {
 
         if let payments = order.payments?.count {
             self.numberOfPayments.text = String(payments)
-        }
-    }
-}
-
-extension Order {
-    var statusColor: UIColor {
-        guard let status = status else { return UIColor(red: 0.9216, green: 0.302, blue: 0.2941, alpha: 1.0) }
-
-        switch status {
-        case "PAID":
-            return UIColor(red: 0.4157, green: 0.6902, blue: 0.298, alpha: 1.0)
-        case "WAITING":
-            return UIColor(red: 0.9765, green: 0.7922, blue: 0.1412, alpha: 1.0)
-        default:
-            return UIColor(red: 0.9216, green: 0.302, blue: 0.2941, alpha: 1.0)
-        }
-    }
-
-    var statusText: String {
-        guard let status = status else { return "" }
-
-        switch status {
-        case "PAID":
-            return "Pago"
-        case "WAITING":
-            return "Aguardando"
-        default:
-            return "Não Pago"
         }
     }
 }

@@ -41,12 +41,10 @@ class OrdersViewController: UIViewController {
     private func updateOrders(response: Result<Orders>) {
         switch response {
         case .success(let orders):
-            DispatchQueue.main.async {
-                if orders.orders != nil {
-                    self.orders += orders.orders!
-                } else {
-                    self.handleError()
-                }
+            if orders.orders != nil {
+                self.orders += orders.orders!
+            } else {
+                self.handleError()
             }
 
         case .failure(let error):
@@ -99,20 +97,8 @@ extension OrdersViewController: UITableViewDataSource {
             cell.date.text = formattedDate
         }
 
-        if let status = self.orders[indexPath.row].status {
-            switch status {
-            case "PAID":
-                cell.status.text = "Pago"
-                cell.status.textColor = UIColor(red: 0.4157, green: 0.6902, blue: 0.298, alpha: 1.0)
-            case "WAITING":
-                cell.status.text = "Aguardando"
-                cell.status.textColor = UIColor(red: 0.9765, green: 0.7922, blue: 0.1412, alpha: 1.0)
-            default:
-                cell.status.text = "Não Pago"
-                cell.status.textColor = UIColor(red: 0.9216, green: 0.302, blue: 0.2941, alpha: 1.0)
-            }
-        }
-
+        cell.status.textColor = self.orders[indexPath.row].statusColor
+        cell.status.text = self.orders[indexPath.row].statusText
         cell.email.text = self.orders[indexPath.row].customer?.email
         cell.token.text = self.orders[indexPath.row].id
         cell.value.text = "R$ " + self.orders[indexPath.row].amount.total.currency
@@ -132,10 +118,13 @@ extension OrdersViewController: UITableViewDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let orderDetailsViewController = segue.destination as? OrderDetailsViewController {
-            if let order = sender as? Order {
-                orderDetailsViewController.order = order.id
-            }
+        guard let orderDetailsViewController = segue.destination as? OrderDetailsViewController else {
+            self.handleError()
+            return
+        }
+
+        if let order = sender as? Order {
+            orderDetailsViewController.order = order.id
         }
     }
 }

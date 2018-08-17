@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A153CC0212792360095E567 /* Orders+status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A153CBF212792360095E567 /* Orders+status.swift */; };
 		6A22E60F211A8A2B00F16965 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E60E211A8A2B00F16965 /* Method.swift */; };
 		6A22E611211A8A3A00F16965 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A22E610211A8A3A00F16965 /* Orders.swift */; };
 		6A7984C3211F54DA0083035A /* UIViewController+showError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7984C2211F54DA0083035A /* UIViewController+showError.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A153CBF212792360095E567 /* Orders+status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Orders+status.swift"; sourceTree = "<group>"; };
 		6A22E60E211A8A2B00F16965 /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		6A22E610211A8A3A00F16965 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		6A7984C2211F54DA0083035A /* UIViewController+showError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showError.swift"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				6AFAAF68211946A7004DEA8D /* OrdersViewController.swift */,
 				6AFAAF6A211946C5004DEA8D /* OrderDetailsViewController.swift */,
 				6AFAAF6C211947E9004DEA8D /* OrderTableViewCell.swift */,
+				6A153CBF212792360095E567 /* Orders+status.swift */,
 				6A7984C2211F54DA0083035A /* UIViewController+showError.swift */,
 			);
 			path = ViewControllers;
@@ -314,6 +317,7 @@
 			files = (
 				6AA986CE21212B7F00C16FCF /* MemoryRequest.swift in Sources */,
 				6AA986D021212DA900C16FCF /* Gateway.swift in Sources */,
+				6A153CC0212792360095E567 /* Orders+status.swift in Sources */,
 				6A22E60F211A8A2B00F16965 /* Method.swift in Sources */,
 				6AB60A89211B88C60069BB9A /* Login.swift in Sources */,
 				6AFAAF6B211946C5004DEA8D /* OrderDetailsViewController.swift in Sources */,
