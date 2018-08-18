@@ -1,6 +1,9 @@
 # moip-challenge
 An app that displays a list of all orders and its details from a given user account (consuming Moip's API).
 
+<img src="http://luizagarofalo.com/moip-challenge.jpg"/>
+
+
 ## Requirements
 - iOS 11.2+
 - Swift 4.0
