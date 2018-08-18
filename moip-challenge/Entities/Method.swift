@@ -3,21 +3,23 @@ import Foundation
 typealias Limit = Int
 typealias Offset = Int
 typealias OrderId = String
+typealias Password = String
 typealias Token = String
+typealias Username = String
 
 enum Method {
     case GET(Path)
-    case POST(String, String)
+    case POST(Username, Password)
 
     func request() -> URLRequest {
         switch self {
-        case .GET(let .orders(token, _, _)):
+        case .GET(.orders(let token, _, _)):
             var request = URLRequest(url: url())
             request.httpMethod = "GET"
             request.setValue("OAuth \(token)", forHTTPHeaderField: "Authorization")
             return request
 
-        case .GET(let .order(token, _)):
+        case .GET(.order(let token, _)):
             var request = URLRequest(url: url())
             request.httpMethod = "GET"
             request.setValue("OAuth \(token)", forHTTPHeaderField: "Authorization")

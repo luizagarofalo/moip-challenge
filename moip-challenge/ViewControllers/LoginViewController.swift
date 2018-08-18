@@ -8,7 +8,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        if KeychainWrapper.standard.string(forKey: "access_token") != nil {
+        let hasAccessToken = KeychainWrapper.standard.string(forKey: "access_token") != nil
+        if hasAccessToken {
             self.performSegue(withIdentifier: "showOrdersSegue", sender: nil)
         }
     }
